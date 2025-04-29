@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>เกมจับคู่คำศัพท์ (Matching)</title>
+        <link rel="stylesheet" href="summary.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+        <script src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    </head>
+<body>
+    <h1><center>เกมจับคู่คำศัพท์ (Matching)</center></h1>
+    <div class="status-display">
+    </div>
+    <div class="answer-container">
+        <h3>เฉลย:</h3>
+        <table class="answer-table">
+            <thead>
+                <th>คำศัพท์</th>
+                <th>ความหมาย</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>       
+    </div>
+    <div class="buttons">
+        <button id="playAgnBtn" class="play-again-button" onclick="playAgain();">เล่นต่อ</button>
+        <button id="extBtn" class="exit-button" onclick="exitGame();">ออก</button>
+    </div>
+    <script>
+        let isTimeOut = sessionStorage.getItem("timeout");
+        if(isTimeOut == "true"){
+            let st = document.createElement("h2");
+            st.innerText = "หมดเวลา";   
+            let sd = document.querySelector(".status-display");
+            sd.appendChild(st);
+        }
+        else{
+            let st = document.createElement("h2");
+            st.innerText = "สำเร็จ";
+            let sd = document.querySelector(".status-display");
+            sd.appendChild(st);
+
+            let gamemode = sessionStorage.getItem("gamemode");
+            let score = sessionStorage.getItem("sc");
+            if(gamemode == "Adventure"){
+                let sc = document.createElement("div");
+                sc.className = "score-display";
+                sc.innerText = "คุณได้ "+String(score)+ " คะแนน";
+                document.body.insertBefore(sc, document.querySelector(".answer-container"));
+            }           
+        }
+
+        let answerTable = document.querySelector(".answer-table");
+        let playedWord = JSON.parse(sessionStorage.getItem("playedword"));
+
+        function addAnswerToTable(headword, meaning){  
+
+            let row = document.createElement("tr");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+
+            td1.innerHTML = headword;
+            td2.innerHTML = meaning;
+
+            row.appendChild(td1);
+            row.appendChild(td2);
+
+            answerTable.children[1].appendChild(row);
+        }
+
+        function addAllAnswersToTable(wordlist){
+            answerTable.children[1].innerHTML = "";
+            wordlist.forEach(word => {
+                addAnswerToTable(word.headword, word.meaning);
+            });
+        }
+
+        addAllAnswersToTable(playedWord);
+
+        const playAgain = () =>{
+             window.location.href = 'index.html';
+        }
+        const exitGame = () =>{
+            liff.closeWindow();
+        }
+    </script>
+    <script type="module">
+        /*import {ref, get, set, update, query, orderByChild} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+        import {userDb} from "../../db.js";
+        let uid = sessionStorage.getItem("uid");
+        let pw = JSON.parse(sessionStorage.getItem("playedword"));
+        let nw = [];
+        let score = parseInt(sessionStorage.getItem("sc"));
+        
+        async function getExistWord(){
+            let ew = [];
+            const q = query(ref(userDb, uid + "/wordlist"), orderByChild("difficulty"));
+            await get(q).then((snapshot) => {        
+                snapshot.forEach(childSnapshot => {
+                    ew.push(childSnapshot.val());
+                });                
+            });
+            nw = merge(pw, ew);
+        }
+
+        function merge(...arrays){
+            let merged = {};        
+            arrays.forEach(data => {
+                data.forEach(o => Object.assign(merged[o.headword] ??= {}, o))
+            });        
+            return Object.values(merged);
+        }
+
+        function updateWordData(){
+            update(ref(userDb, uid), {
+                wordlist: nw
+            });
+        }
+
+        async function getOldScore(){
+            const q = query(ref(userDb, uid + "/scores/matching"));
+            await get(q).then((snapshot) => {        
+                let osc = parseInt(snapshot.val());
+                score += osc;
+            });
+        }
+        function updateScore(){
+            const updates = {};
+            updates[uid + "/scores/matching"] = score;
+            update(ref(userDb), updates);
+            sessionStorage.setItem("sc", "0");
+        }
+
+        let gamemode = sessionStorage.getItem("gamemode");
+        if(gamemode == "Adventure"){
+            getExistWord().then(updateWordData);
+            getOldScore().then(updateScore);
+        }*/
+    </script>
+</body>
+</html>

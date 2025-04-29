@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", Sarabun;
+}
+body{
+    justify-content: center;
+}
+h1 {
+    color: white;
+    background-color: mediumseagreen;
+    font-size: 30px;
+    padding: 10px;
+}
+.status-bar, .gamedata-bar{
+    display: flex;
+    flex-direction: row;
+    font-size: medium;
+    margin: 5px;
+    padding: 5px;
+    justify-content: space-between;
+}
+.word-container{
+    overflow: auto;
+    height: 160px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid black;
+    background-color: white;
+}
+.word-empty{
+    height: 40px;
+    background-color: transparent;
+}
+.word-button{
+    height: 40px;
+    width: 110px;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    background-color: white;
+}
+.word-button-selected{
+    height: 40px;
+    width: 110px;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid blue;
+    background-color: skyblue;
+}
+.question-container{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+}
+.question-box{
+    display: flex;
+    flex-direction: row;
+}
+.word-answer{
+    height: 40px;
+    width: 110px;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    background-color: white;
+}
+.meaning-box{
+    height: 40px;
+    width: 60%;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    background-color: white;
+}
+.buttons{
+    display: flex;
+    margin: 5px 40px 5px 40px;
+    justify-content: space-between;
+    
+}
+.buttons .check-button{
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid black;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: lightgreen;
+}
+.check-button:active{
+    background-color: forestgreen;
+}
+.buttons .clear-all-button{
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid black;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: lightcoral;
+}
+.clear-all-button:active{
+    background-color: crimson;
+}
