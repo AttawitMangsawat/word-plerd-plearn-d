@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมอักษรที่หายไป (Missing Letters)</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1><center>เกมอักษรที่หายไป (Missing Letters)</center></h1>
+    <div class="welcome">
+        <p id="username">สวัสดี </p>
+    </div>
+    <div class="selection">
+        <div class="gamemode-selection">
+            <span><b>เลือกโหมดเกม (Select Game Mode)</b></span><br>
+            <form id="select-form">
+                <input type="radio" id="adventure" name="gamemode" value="Adventure" checked>
+                <label for="adventure">ผจญภัย (Adventure)</label><br>
+                <input type="radio" id="practice" name="gamemode" value="Practice" disabled="true">
+                <label for="practice">ฝึกฝน (Practice) </label>
+            </form>
+        </div>
+        <div class="difficulty-selection">
+            <span><b>เลือกระดับความยาก (Select Difficulty)</b></span><br>
+            <select id="select-box" onchange="checkDifficulty()">
+                <option value="1">พื้นฐาน</option>
+                <option value="2">ง่าย</option>
+                <option value="3">ปานกลาง</option>
+                <option value="4">ยาก</option>
+                <option value="5">ขั้นสูง</option>
+                <option value="6">ผู้เชี่ยวชาญ</option>
+            </select>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="play-button" onclick="startGame();">เล่นเกม</button>
+    </div>
+    <script>
+        /*window.onload = main();
+        async function getProfile() {
+            const profile = await liff.getProfile();
+            sessionStorage.setItem("uid", profile.userId);
+            sessionStorage.setItem("displayName", profile.displayName);
+            document.getElementById("username").append(profile.displayName);
+        }
+        async function main(){
+            await liff.init({ liffId: "2004023943-xgyK2k1p", withLoginOnExternalBrowser: true});
+            if (liff.isLoggedIn()){
+                getProfile();
+            }
+            else{
+                liff.login();
+            }
+        }
+        async function verifyAccessToken(){
+            const accessToken = await liff.getAccessToken();
+            const endpoint = `https://api.line.me/oauth2/v2.1/verify`;
+            const verify = await axios.get(`${endpoint}?access_token=${accessToken}`);
+        }
+        async function getUserProfile(){
+            const accessToken = await liff.getAccessToken();
+            const profile = await axios.get(`https://api.line.me/v2/profile`, {
+                headers: { Authorization: `Bearer ${accessToken}` }
+            });
+        }*/
+    </script>
+    <script type="module" defer>
+        /*import {ref, get, set, query, child, orderByChild, equalTo} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+        import {userDb} from "../../db.js";
+        
+        let uid;
+        
+        async function getUID() {
+            uid = sessionStorage.getItem("uid");
+        }
+
+        setTimeout(() => {
+            getUID().then(checkUserData).then(checkWordlistData("1"));
+        }, 2000);
+
+        async function checkWordlistData(gameDifficulty){
+            const dbRef = ref(userDb);
+            const q = query(child(dbRef, uid + "/wordlist"), orderByChild("difficulty"), equalTo(parseInt(gameDifficulty)));
+            await get(q).then((snapshot) => {
+                if(!snapshot.exists()){
+                    document.getElementById("practice").disabled = true;
+                }
+                else{
+                    document.getElementById("practice").disabled = false;
+                }
+            });
+        }
+        async function checkUserData(){
+            const dbRef = ref(userDb);
+            await get(child(dbRef, uid)).then((snapshot) => {
+            if (!snapshot.exists()) {
+                createNewUserData();
+            }
+            });
+        }
+        function createNewUserData(){
+            set(ref(userDb, uid), {
+                displayName: sessionStorage.getItem("displayName"),
+                scores: {matching: 0, missingletters: 0, crossword: 0, hangman: 0},
+                wordlist: {}
+            });
+        }
+        cd.checkWordlistData = checkWordlistData;*/
+    </script>
+    <script>
+        let gameMode;
+        let gameDifficulty;
+
+        const cd = {};
+        const checkDifficulty = () =>{
+            let d = document.getElementById("select-box").value;
+            cd.checkWordlistData(d);
+        }
+
+        const startGame = () =>{    
+            let gm = document.getElementsByName("gamemode");
+            for(let i = 0; i < gm.length; i++){
+                if(gm[i].checked) gameMode = gm[i].value;
+            }
+            //No selection
+            if(gameMode === undefined){
+                alert("กรุณาเลือกโหมดเกม");
+                return;
+            }
+
+            gameDifficulty = document.getElementById("select-box").value;
+            window.location.href = 'missingletters.html';
+            sessionStorage.setItem("gamemode", gameMode);
+            sessionStorage.setItem("gamedifficulty", gameDifficulty); 
+        }
+    </script>
+</body>
+</html>

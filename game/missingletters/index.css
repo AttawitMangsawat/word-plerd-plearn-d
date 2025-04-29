@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", Sarabun;
+}
+h1 {
+    color: white;
+    background-color: mediumseagreen;
+    font-size: 30px;
+    padding: 10px;
+}
+.welcome{
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+}
+.selection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+}
+.gamemode-selection{
+    display: relative;
+    text-align: center;
+    font-size: medium;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    margin: 5px;
+    padding: 5px;
+}
+.gamemode-selection input, label{
+    margin: 8px;
+}
+
+.difficulty-selection{
+    display: relative;
+    text-align: center;
+    font-size: medium;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    margin: 5px;
+    padding: 5px;
+}
+.difficulty-selection select{
+    width: 100px;
+    height: 30px;
+    margin: 8px;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+.buttons .play-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 180px;
+    border-radius: 20px;
+    padding: 5px;
+    border: 2px solid black;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: lightgreen;
+}
+.play-button:hover{
+    background-color: forestgreen;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมอักษรที่หายไป (Missing Letters)</title>
+    <link rel="stylesheet" href="missingletters.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script type="module" src="words.js" async></script>
+    <script src="missingletters.js" defer></script>
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+</head>
+<body>
+    <h1><center>เกมอักษรที่หายไป (Missing Letters)</center></h1>
+    <div class="gamedata-bar">
+        <p class="gamemode"></p>
+        <p class="gamedifficulty"></p>
+        <p class="time">เหลือเวลา <b><span id="timer">2:00</span></p></b>
+    </div>
+    <div class="status-bar">
+        <p class="status" id="status"></p>
+    </div>
+    <div class="question-container">
+        <div class="question-box">
+            <div class="word-box" id="word-box-1">
+            </div>
+            <div class="meaning-box">
+                <p class="meaning"></p>
+            </div>
+        </div>
+        <div class="question-box">
+            <div class="word-box" id="word-box-2">
+            </div>
+            <div class="meaning-box">
+                <p class="meaning"></p>
+            </div>
+        </div>
+        <div class="question-box">
+            <div class="word-box" id="word-box-3">
+            </div>
+            <div class="meaning-box">
+                <p class="meaning"></p>
+            </div>
+        </div>          
+        <div class="question-box">
+            <div class="word-box" id="word-box-4">
+            </div>
+            <div class="meaning-box">
+                <p class="meaning"></p>
+            </div>
+        </div>
+        <div class="question-box">
+            <div class="word-box" id="word-box-5">
+            </div>
+            <div class="meaning-box">
+                <p class="meaning"></p>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button id="chkBtn" class="check-button" onclick="checkAnswer()">ตรวจสอบ</button>
+        <button id="clrBtn" class="clear-all-button" onclick="clearAllAnswer()">ล้างทั้งหมด</button>
+    </div>
+</body>
+</html>
